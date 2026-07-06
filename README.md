@@ -1,34 +1,72 @@
 # 🚀 Linux Automation Script
 
-A simple Bash script that automates common Linux system administration tasks through a menu-driven interface. This project is designed for beginners who are learning Linux administration and Bash scripting.
+A menu-driven Bash script that automates common Linux system administration tasks. This project is designed for beginners learning Linux administration and Bash scripting while demonstrating real-world automation tasks.
 
-## 📌 Features
+---
+
+# 📌 Features
 
 The script provides the following automation tasks:
 
-### 👤 1. Create a User
+## 🖥️ 1. System Health Monitoring
+- Displays CPU load.
+- Shows memory usage.
+- Displays disk usage.
+- Helps monitor overall system health.
+
+---
+
+## 👤 2. Create User
 - Checks whether a user already exists.
-- Creates a new user if it doesn't exist.
+- Creates a new user.
 - Creates a home directory.
 - Sets the default shell to `/bin/bash`.
 - Assigns a default password.
 
-### 📂 2. Copy Files
+---
+
+## ❌ 3. Delete User
+- Checks if the user exists.
+- Deletes the user along with the home directory.
+- Prevents deletion of non-existing users.
+
+---
+
+## 🔐 4. Change File Permissions
+- Accepts a filename.
+- Accepts permission values (e.g., 755, 644).
+- Updates file permissions using `chmod`.
+
+---
+
+## 🌐 5. Network Connectivity Check
+- Checks internet connectivity using `ping`.
+- Displays whether the network connection is working.
+- Detects connectivity failures.
+
+---
+
+## 📄 6. View System Logs
+- Displays the last 20 lines of the system log.
+- Useful for quick troubleshooting.
+
+---
+
+## 📂 7. Copy Files
 - Copies files from a source directory to a destination directory.
-- Creates the destination directory automatically if it doesn't exist.
+- Creates the destination directory automatically.
 - Displays success or failure messages.
 
-### 💾 3. Monitor Disk Usage
-- Retrieves the disk usage percentage of the system.
+---
 
-### 🛠️ 4. Install Software
-- Checks whether a tool is already installed.
+## 🛠️ 8. Install Software
+- Checks whether a package is already installed.
 - Updates package information.
 - Installs the requested package using `apt`.
 
 ---
 
-## 🖥️ Technologies Used
+# 🖥️ Technologies Used
 
 - Bash Scripting
 - Linux
@@ -37,7 +75,7 @@ The script provides the following automation tasks:
 
 ---
 
-## 📁 Project Structure
+# 📁 Project Structure
 
 ```
 linux-automation-script/
@@ -48,56 +86,71 @@ linux-automation-script/
 
 ---
 
-## ▶️ How to Run
+# ▶️ How to Run
 
-### Clone the repository
+## Clone the Repository
 
 ```bash
 git clone https://github.com/<your-username>/linux-automation-script.git
 ```
 
-### Navigate to the project
+## Navigate to the Project
 
 ```bash
 cd linux-automation-script
 ```
 
-### Give execute permission
+## Give Execute Permission
 
 ```bash
 chmod +x automation.sh
 ```
 
-### Run the script
+## Run the Script
 
 ```bash
 ./automation.sh
 ```
 
-> Some operations require **sudo** privileges.
+> **Note:** Some operations require `sudo` privileges.
 
 ---
 
-## 📋 Menu
-
-```
-1. Create User
-2. Copy Files
-3. Monitor Disk Usage
-4. Install Tools
-```
-
----
-
-## 📸 Example
+# 📋 Menu
 
 ```
 --------------------------------------------
 Menu for Automating task
-1. Creating user
-2. Copy files
-3. Monitoring disk usage
-4. Installing tools
+
+1. Check System Health
+2. Create User
+3. Delete User
+4. Change File Permission
+5. Check Network Connection
+6. View System Logs
+7. Copy Files
+8. Install Tools
+
+--------------------------------------------
+```
+
+---
+
+# 📸 Example Output
+
+```text
+--------------------------------------------
+Menu for Automating task
+
+1. Check System Health
+2. Create User
+3. Delete User
+4. Change File Permission
+5. Check Network Connection
+6. View System Logs
+7. Copy Files
+8. Install Tools
+
 --------------------------------------------
 
 Enter the choice:
@@ -105,65 +158,75 @@ Enter the choice:
 
 ---
 
-## 📚 Commands Used
+# 📚 Commands Used
 
+- `uptime`
+- `free`
+- `df`
 - `useradd`
-- `chpasswd`
+- `userdel`
+- `chmod`
+- `ping`
+- `tail`
 - `cp`
 - `mkdir`
-- `df`
-- `awk`
-- `sed`
 - `which`
 - `apt`
+- `chpasswd`
 
 ---
 
-## 🎯 Learning Objectives
+# 🎯 Learning Objectives
 
 This project demonstrates:
 
-- Bash functions
-- Conditional statements
-- Case statements
-- User input
-- Linux user management
-- File operations
-- Package installation
-- Basic system administration
-- Shell scripting best practices
+- Bash Functions
+- Conditional Statements
+- Case Statements
+- User Input
+- Linux User Management
+- File Permission Management
+- Network Troubleshooting
+- Log Analysis
+- Package Installation
+- File Operations
+- System Health Monitoring
+- Basic Linux Administration
+- Shell Scripting Best Practices
 
 ---
 
-## ⚠️ Known Issues
+# ⚠️ Known Issues
 
-- The `disk_usage()` function retrieves disk usage but does not display it.
 - `install_tools()` contains a typo:
   - `reap` should be `read`.
-- User input should be quoted in several places to handle spaces safely.
+- User input should be quoted consistently for better safety.
 - Error handling can be improved.
-
-These are good areas for future improvements.
+- The script currently supports only Debian/Ubuntu-based systems (`apt`).
 
 ---
 
-## 🚀 Future Enhancements
+# 🚀 Future Enhancements
 
-- Add logging.
 - Add colored terminal output.
-- Display disk usage percentage.
-- Allow custom passwords.
-- Add package removal option.
+- Add logging functionality.
+- Allow custom passwords while creating users.
+- Add package removal feature.
+- Add backup and restore functionality.
+- Improve error handling.
 - Improve input validation.
-- Support RedHat (`yum`/`dnf`) based systems.
-- Add backup functionality.
+- Support RedHat-based systems (`yum`/`dnf`).
+- Add service management.
+- Add process monitoring.
 
 ---
 
-## 👨‍💻 Author
+# 👨‍💻 Author
 
 **Gnanaselvam P**
 
 Linux | AWS | Docker | Kubernetes | Terraform | DevOps Enthusiast
 
 ---
+
+⭐ If you found this project useful, consider giving it a star on GitHub!

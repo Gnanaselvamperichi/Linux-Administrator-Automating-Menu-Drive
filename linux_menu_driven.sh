@@ -19,6 +19,7 @@ system_health()
     echo "==================================="
 }
 
+
 create_user()
 {
     read -p "Enter the username:" user
@@ -33,6 +34,7 @@ create_user()
     fi
 }
 
+
 delete_user()
 {
     read -p "Enter the username to delete: " username
@@ -46,6 +48,7 @@ delete_user()
     fi
 }
 
+
 change_permission()
 {
     read -p "Enter the file name: " file
@@ -53,6 +56,7 @@ change_permission()
     chmod "$permission" "$file"
     echo "permission updated."
 }
+
 
 network_check()
 {
@@ -68,12 +72,14 @@ network_check()
     fi
 }
 
+
 view_logs()
 {
     echo "Showing last 20 logs..."
 
     sudo tail -20 /var/log/syslog
 }
+
 
 copy_files()
 {
@@ -92,6 +98,7 @@ copy_files()
 
 }
 
+
 install_tools()
 {
     reap -p "Enter the tool name: " tool
@@ -108,18 +115,27 @@ install_tools()
 
 echo "--------------------------------------------"
 echo "Menu for Automating task"
-echo "1. Creating user "
-echo -e "2. Copy files
-3. Monitoring CPU, Memory & disk usage
+echo -e "
+1. Check System_Health ( CPU, Memory & disk usage )
+2. Create_user
+3. Delete_user
+4. Change File Permission
+5. Check Network Connection
+6. View Systemlog
+7. Copy files
 4. Installing tools"
 echo "--------------------------------------------"
 
 read -p "Enter the choice: " choice
 
 case $choice in
-        1) create_user ;;
-        2) copy_files ;;
-        3) disk_usage ;;
-        4) install_tools ;;
+        1) system_health ;;
+        2) create_user ;;
+        3) delete_user ;;
+        4) change_permission ;;
+        5) network_check ;;
+        6) view_logs ;;
+        7) copy_files ;;
+        8) install_tools ;;
         *) echo "invalid option" ;;
 esac
