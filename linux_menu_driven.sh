@@ -1,5 +1,24 @@
 #! /bin/bash
 
+system_health()
+{
+    echo "========== SYSTEM HEALTH =========="
+
+    echo
+    echo "CPU Load:"
+    uptime
+
+    echo
+    echo "Memory Usage:"
+    free -h
+
+    echo
+    echo "Disk Usage:"
+    df -h
+
+    echo "==================================="
+}
+
 create_user()
 {
     read -p "Enter the username:" user
@@ -12,6 +31,48 @@ create_user()
         echo "$user:123" | sudo chpasswd &>/dev/null
         echo "user created succesfully"
     fi
+}
+
+delete_user()
+{
+    read -p "Enter the username to delete: " username
+
+    if id "$username" &>/dev/null
+    then
+        sudo userdel -r "$username"
+        echo "User deleted Successfully"
+    else
+        echo "User does not exist."
+    fi
+}
+
+change_permission()
+{
+    read -p "Enter the file name: " file
+    read -p "Enter the permission (Example: 755): " permission
+    chmod "$permission" "$file"
+    echo "permission updated."
+}
+
+network_check()
+{
+    echo "Checking Internet Connectivity..."
+
+    ping -c 4 google.com
+
+    if [ $? -eq 0 ]
+    then
+        echo "Internet Connection is Working."
+    else
+        echo "Network Problem Detected."
+    fi
+}
+
+view_logs()
+{
+    echo "Showing last 20 logs..."
+
+    sudo tail -20 /var/log/syslog
 }
 
 copy_files()
@@ -29,12 +90,6 @@ copy_files()
         echo "copy command failed"
     fi
 
-}
-
-disk_usage()
-{
-    usage=$(df -h | awk 'NR==5 {print $5}' | sed 's/%//')
-    echo "Current disk usage: ${usage}%"
 }
 
 install_tools()
@@ -55,7 +110,7 @@ echo "--------------------------------------------"
 echo "Menu for Automating task"
 echo "1. Creating user "
 echo -e "2. Copy files
-3. Monitoring disk usage
+3. Monitoring CPU, Memory & disk usage
 4. Installing tools"
 echo "--------------------------------------------"
 
