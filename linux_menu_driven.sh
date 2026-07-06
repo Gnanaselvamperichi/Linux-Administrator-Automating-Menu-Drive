@@ -120,6 +120,14 @@ Uninstall_tools()
     echo "Tool is Uninstalled"
 }
 
+
+restart_service()
+{
+    read -p "Enter service name: " service
+    sudo systemctl restart "$service"
+    echo "Service restarted."
+}
+
 echo "--------------------------------------------"
 echo "Menu for Automating task"
 echo -e "
@@ -132,19 +140,21 @@ echo -e "
 7. Copy files
 8. Installing Tools
 9. Uninstall Tools"
+10. Restart Service
 echo "--------------------------------------------"
 
 read -p "Enter the choice: " choice
 
 case $choice in
-        1) system_health ;;
-        2) create_user ;;
-        3) delete_user ;;
-        4) change_permission ;;
-        5) network_check ;;
-        6) view_logs ;;
-        7) copy_files ;;
-        8) install_tools ;;
-        9) Uninstall_tools ;;
+        1)  system_health ;;
+        2)  create_user ;;
+        3)  delete_user ;;
+        4)  change_permission ;;
+        5)  network_check ;;
+        6)  view_logs ;;
+        7)  copy_files ;;
+        8)  install_tools ;;
+        9)  Uninstall_tools ;;
+        10) restart_service ;;
         *) echo "invalid option" ;;
 esac
