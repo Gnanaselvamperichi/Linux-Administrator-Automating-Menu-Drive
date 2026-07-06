@@ -101,7 +101,7 @@ copy_files()
 
 install_tools()
 {
-    reap -p "Enter the tool name: " tool
+    reap -p "Enter the tool name to install: " tool
     if which $tool &>/dev/null
     then
         echo "Tool already exists"
@@ -111,6 +111,13 @@ install_tools()
         sudo apt install $tool -y &>/dev/null
         echo "$tool is installed successfully"
     fi
+}
+
+Uninstall_tools()
+{
+    remove -p "Enter tool name to Uninstall: " tool
+    sudo apt remove "$tool" -y
+    echo "Tool is Uninstalled"
 }
 
 echo "--------------------------------------------"
@@ -123,7 +130,8 @@ echo -e "
 5. Check Network Connection
 6. View Systemlog
 7. Copy files
-4. Installing tools"
+8. Installing Tools
+9. Uninstall Tools"
 echo "--------------------------------------------"
 
 read -p "Enter the choice: " choice
@@ -137,5 +145,6 @@ case $choice in
         6) view_logs ;;
         7) copy_files ;;
         8) install_tools ;;
+        9) Uninstall_tools ;;
         *) echo "invalid option" ;;
 esac
