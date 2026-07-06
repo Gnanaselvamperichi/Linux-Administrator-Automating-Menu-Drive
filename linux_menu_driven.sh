@@ -121,6 +121,13 @@ Uninstall_tools()
 }
 
 
+service_status()
+{
+    read -p "Enter service name: " service
+
+    systemctl status "$service"
+}
+
 restart_service()
 {
     read -p "Enter service name: " service
@@ -128,33 +135,99 @@ restart_service()
     echo "Service restarted."
 }
 
-echo "--------------------------------------------"
-echo "Menu for Automating task"
-echo -e "
-1. Check System_Health ( CPU, Memory & disk usage )
-2. Create_user
-3. Delete_user
-4. Change File Permission
-5. Check Network Connection
-6. View Systemlog
-7. Copy files
-8. Installing Tools
-9. Uninstall Tools"
-10. Restart Service
-echo "--------------------------------------------"
+backup_directory()
+{
+    read -p "Enter source folder: " source
 
-read -p "Enter the choice: " choice
+    read -p "Enter backup file name: " backup
+
+    tar -czvf "$backup.tar.gz" "$source"
+
+    echo "Backup created successfully."
+}
+
+system_update()
+{
+    sudo apt update
+
+    sudo apt upgrade -y
+
+    echo "System Updated Successfully."
+}
+
+disk_cleanup()
+{
+    sudo apt autoremove -y
+
+    sudo apt clean
+
+    echo "Disk cleaned successfully."
+}
+
+running_processes()
+{
+    ps -ef
+
+    echo
+
+    echo "Total Running Processes:"
+
+    ps -e | wc -l
+}
+
+kill_process()
+{
+    read -p "Enter Process ID (PID): " pid
+
+    sudo kill -9 "$pid"
+
+    echo "Process Killed."
+}
+
+
+echo "======================================================"
+echo "            Linux Administrator Toolkit"
+echo "======================================================"
+echo
+echo "1.  Check System Health (CPU, Memory & Disk Usage)"
+echo "2.  Check Network Connection"
+echo "3.  View Service Status"
+echo "4.  Restart Service"
+echo "5.  View System Logs"
+echo "6.  View Running Processes"
+echo "7.  Kill Process"
+echo "8.  Create User"
+echo "9.  Delete User"
+echo "10. Change File Permission"
+echo "11. Copy Files"
+echo "12. Backup Directory"
+echo "13. Install Tools"
+echo "14. Uninstall Tools"
+echo "15. System Update"
+echo "16. Disk Cleanup"
+echo "17. Exit"
+echo
+echo "======================================================"
+
+read -p "Enter your choice: " choice
 
 case $choice in
-        1)  system_health ;;
-        2)  create_user ;;
-        3)  delete_user ;;
-        4)  change_permission ;;
-        5)  network_check ;;
-        6)  view_logs ;;
-        7)  copy_files ;;
-        8)  install_tools ;;
-        9)  Uninstall_tools ;;
-        10) restart_service ;;
-        *) echo "invalid option" ;;
+    1)  system_health ;;
+    2)  network_check ;;
+    3)  service_status ;;
+    4)  restart_service ;;
+    5)  view_logs ;;
+    6)  running_processes ;;
+    7)  kill_process ;;
+    8)  create_user ;;
+    9)  delete_user ;;
+    10) change_permission ;;
+    11) copy_files ;;
+    12) backup_directory ;;
+    13) install_tools ;;
+    14) Uninstall_tools ;;
+    15) system_update ;;
+    16) disk_cleanup ;;
+    17) echo "Thank you for using Linux Administrator Toolkit!"; exit ;;
+    *)  echo "Invalid option. Please select a valid choice." ;;
 esac
